@@ -52,15 +52,15 @@
 
    - name: install npm dependencies
      community.general.npm:
-     path: /app   
+      path: /app   
 
    - name: Creating BE service and copying the file to systemd
      ansible.builtin.copy:
-     src: /root/ansible-expense/backend.service 
-     dest: /etc/systemd/system/
-     owner: root
-     group: root
-     mode: "0644" 
+      src: /root/ansible-expense/backend.service 
+      dest: /etc/systemd/system/
+      owner: root
+      group: root
+      mode: "0644" 
 
 
    - name: Daemon reload
