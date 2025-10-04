@@ -1,0 +1,87 @@
+- name: backend
+  hosts: backend
+  connection: backend
+  become: yes
+  vars:
+    db_host: sql.pramod.shop
+    db_root_user: root
+    db_root_password: "ExpenseApp@1"
+    db_user: expense
+    db_password: "ExpenseApp@1"
+    db_name: transactions
+  tasks:
+   - name: disbaling nodejs
+     ansible.builtin.command: "dnf module disable nodejs -y"
+   - name: enabling nodejs 20
+     ansible.buitlin.command: "dnf module enable nodejs:20 -y"
+   - name: installing nodejs
+     ansible.builtin.package:
+      name: nodejs
+      state: present
+
+   - name: Creating user 
+     ansible.builtin.user:
+      name: expense
+      state: present
+
+   - name: Create app directory
+     ansible.builtin.file:
+       path: /app
+       state: directory
+       owner: expense
+       group: expense
+       mode: "0755"
+
+   - name: Removing old backend files
+     ansible.builtin.command: rm -rf /app/*
+
+
+   - name: Downloading Backend files
+     ansible.builtin.get_url:
+      url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
+
+   - name: extract backend files
+     ansible.builtin.unarchive:
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: yes
+
+   - name: install npm dependencies
+     community.general.npm:
+     path: /app   
+
+   - name: Creating BE service and copying the file to systemd
+     ansible.builtin.copy:
+     src: /root/ansible-expense/backend.service 
+     dest: /etc/systemd/system/
+     owner: root
+     group: root
+     mode: "0644" 
+
+
+   - name: Daemon reload
+     ansible.builtin.systemd:
+       daemon-reload: yes
+
+   - name: Starting the BE service
+     ansible.builtin.service:
+      name: backend
+      state: started
+      enabled: true
+
+   - name: Installing mysql client
+     ansible.builtin.package:
+      name: mysql
+      state: present
+    
+   
+    
+   - name: Import backend schema using shell
+     ansible.builtin.shell: "mysql -h database.pramod.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+     
+    
+   - name: Restart Backend
+     ansible.builtin.service:
+      name: backend
+      state: restarted
