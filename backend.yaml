@@ -35,8 +35,8 @@
        mode: "0755"
 
    - name: Removing old backend files
-     ansible.builtin.shell: 
-       cd: rm -rf /app/*
+     ansible.builtin.shell: rm -rf /app/*
+
 
 
    - name: Downloading Backend files
