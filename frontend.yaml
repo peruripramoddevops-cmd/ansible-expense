@@ -14,7 +14,7 @@
        enabled: true
 
    - name: Delete default Web files
-     ansible.builtin.command: "rm -rf /usr/share/nginx/html/*"
+     ansible.builtin.shell: "rm -rf /usr/share/nginx/html/*"
   
    - name: Downloading the required Web files
      ansible.builtin.get_url:
@@ -22,7 +22,7 @@
        dest: /tmp/frontend.zip
 
    - name: Creating App Directory
-     ansible.builtin.command: mkdir -p /app
+     ansible.builtin.shell: mkdir -p /app
 
    - name: Unzipping the required Web files
      ansible.builtin.unarchive:
