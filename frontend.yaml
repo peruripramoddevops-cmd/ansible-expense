@@ -32,7 +32,7 @@
   
    - name: Copying the conf file to Conf directory
      ansible.builtin.copy:
-       src: /root/ansible-expense/expense.conf
+       src: /home/ec2-user/ansible-expense/expense.conf
        dest: /etc/nginx/default.d/
   
    - name: Restarting the NGINX
