@@ -1,6 +1,6 @@
 - name: Mysql server
   hosts: Mysql
-  connection: Mysql
+#  connection: Mysql
   become: yes
   tasks:
    - name: Installing Mysql server
