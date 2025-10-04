@@ -11,9 +11,11 @@
     db_name: transactions
   tasks:
    - name: disbaling nodejs
-     ansible.builtin.shell: "dnf module disable nodejs -y"
+     ansible.builtin.shell: 
+       cmd: "dnf module disable nodejs -y"
    - name: enabling nodejs 20
-     ansible.buitlin.shell: "dnf module enable nodejs:20 -y"
+     ansible.buitlin.shell: 
+      cmd: "dnf module enable nodejs:20 -y"
    - name: installing nodejs
      ansible.builtin.package:
       name: nodejs
@@ -33,7 +35,8 @@
        mode: "0755"
 
    - name: Removing old backend files
-     ansible.builtin.shell: rm -rf /app/*
+     ansible.builtin.shell: 
+       cd: rm -rf /app/*
 
 
    - name: Downloading Backend files
