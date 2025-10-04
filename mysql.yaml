@@ -5,22 +5,22 @@
   tasks:
    - name: Installing Mysql server
      ansible.builtin.package:
-     name: mysql-server
-     state: present
+      name: mysql-server
+      state: present
   
-  -  name: Running the SQL service
-     ansible.builtin.service:
-     name: mysqld
-     state: started
-     enabled: yes
+   -  name: Running the SQL service
+      ansible.builtin.service:
+       name: mysqld
+       state: started
+       enabled: yes
 
-  -  name: setting up root password
-     ansible.builtin.shell: "mysql_secure_installation --set-root-pass ExpenseApp@1"
+   -  name: setting up root password
+      ansible.builtin.shell: "mysql_secure_installation --set-root-pass ExpenseApp@1"
 
-  -  name: copying my conf to db 
-     ansible.buitlin.copy:
-     src: /root/ansible-expense/.myconf
-     dest: /root/
-     owner: root
-     group: root
-     mode: "0600"
+   -  name: copying my conf to db 
+      ansible.buitlin.copy:
+       src: /root/ansible-expense/.myconf
+       dest: /root/
+       owner: root
+       group: root
+       mode: "0600"
