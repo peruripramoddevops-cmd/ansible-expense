@@ -14,7 +14,7 @@
        enabled: true
 
    - name: Delete default Web files
-     ansible.builtin.command: rm -rf /usr/share/nginx/html/*
+     ansible.builtin.command: "rm -rf /usr/share/nginx/html/*"
   
    - name: Downloading the required Web files
      ansible.builtin.get_url:
