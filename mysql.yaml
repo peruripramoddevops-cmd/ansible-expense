@@ -19,7 +19,7 @@
 
    -  name: copying my conf to db 
       copy:
-       src: /root/ansible-expense/myconf
+       src: /root/ansible-expense/myconf.conf
        dest: /root/
        owner: root
        group: root
