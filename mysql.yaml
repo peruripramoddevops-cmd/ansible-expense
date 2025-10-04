@@ -19,8 +19,8 @@
 
    -  name: copying my conf to db 
       copy:
-       src: /root/ansible-expense/myconf.conf
-       dest: /root/
+       src: /home/ec2-user/ansible-expense/myconf.conf
+       dest: /root/myconf.conf
        owner: root
        group: root
        mode: "0600"
