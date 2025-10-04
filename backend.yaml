@@ -14,7 +14,7 @@
      ansible.builtin.shell: 
        cmd: "dnf module disable nodejs -y"
    - name: enabling nodejs 20
-     ansible.buitlin.shell: 
+     ansible.builtin.shell: 
       cmd: "dnf module enable nodejs:20 -y"
    - name: installing nodejs
      ansible.builtin.package:
