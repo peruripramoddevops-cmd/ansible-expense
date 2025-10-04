@@ -80,7 +80,6 @@
       state: present
     
    
-    
    - name: Import backend schema using shell
      ansible.builtin.shell: "mysql -h mysql.pramod.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql"
      
