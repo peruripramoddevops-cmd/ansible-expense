@@ -56,7 +56,7 @@
 
    - name: Creating BE service and copying the file to systemd
      ansible.builtin.copy:
-      src: /root/ansible-expense/backend.service 
+      src: /home/ec2-user/ansible-expense/backend.service 
       dest: /etc/systemd/system/
       owner: root
       group: root
