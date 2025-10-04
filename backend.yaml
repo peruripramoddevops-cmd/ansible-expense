@@ -1,6 +1,6 @@
 - name: backend
   hosts: backend
-  connection: backend
+#  connection: backend
   become: yes
   vars:
     db_host: sql.pramod.shop
