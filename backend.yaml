@@ -82,7 +82,7 @@
    
     
    - name: Import backend schema using shell
-     ansible.builtin.shell: "mysql -h database.pramod.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+     ansible.builtin.shell: "mysql -h mysql.pramod.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql"
      
     
    - name: Restart Backend
